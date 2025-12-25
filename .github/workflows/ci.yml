@@ -2,10 +2,10 @@ name: CI
 
 on:
   push:
-    branches: [ "main" ]
+    branches: ["main"]
 
 jobs:
-  test:
+  test-and-build:
     runs-on: ubuntu-latest
 
     steps:
@@ -27,4 +27,9 @@ jobs:
         run: |
           cd backend
           pytest
+
+      - name: Build Docker image
+        run: |
+          cd backend
+          docker build -t devops-backend .
 
